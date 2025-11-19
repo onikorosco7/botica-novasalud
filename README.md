@@ -187,9 +187,3 @@ Uso académico / personal.
 
 ---
 
-## 📌 Commit sugerido
-
-```
-docs: add full README.md with project documentation and setup instructions
-```
-
