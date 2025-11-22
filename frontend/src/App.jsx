@@ -13,12 +13,16 @@ import InventarioReporte from "./pages/reportes/InventarioReporte";
 import ProtectedRoute from "./components/ProtectedRoute";
 import HistorialVentas from "./pages/ventas/HistorialVentas";
 import PerfilUsuario from "./pages/perfil/PerfilUsuario";
+import HomePage from "./layout/public/pages/HomePage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         {/* Ruta pública */}
+         <Route path="/" element={<HomePage />} />
+        {/* Más adelante: catálogo, producto, nosotros, contacto */}
+        {/* <Route path="/catalogo" element={<CatalogoPage />} /> */}
         <Route path="/" element={<LoginPage />} />
 
         {/* Rutas protegidas */}

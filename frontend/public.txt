@@ -1,0 +1,33 @@
+🟦 PÁGINAS PÚBLICAS
+1. Página Home
+
+— Banner
+— Resumen de productos
+— Servicios
+— Testimonios
+
+2. Listado de productos (vista pública)
+
+— Sin CRUD
+— Solo vista
+— Con buscador
+— Con filtros (precio, laboratorio, etc.)
+
+3. Vista de producto
+
+— Foto
+— Nombre
+— Precio
+— Detalles
+— Stock disponible
+
+4. Contacto
+
+— Formulario
+— WhatsApp directo
+
+5. Nosotros
+
+— Historia
+— Misión y visión
+— Equipo
