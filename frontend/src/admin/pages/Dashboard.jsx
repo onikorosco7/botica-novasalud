@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AdminLayout from "../layout/Admin/AdminLayout";
+import AdminLayout from "../../layout/Admin/AdminLayout";
 
 import { Line, Bar, Doughnut } from "react-chartjs-2";
 import {

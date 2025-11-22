@@ -13,24 +13,27 @@ import InventarioReporte from "./pages/reportes/InventarioReporte";
 import ProtectedRoute from "./components/ProtectedRoute";
 import HistorialVentas from "./pages/ventas/HistorialVentas";
 import PerfilUsuario from "./pages/perfil/PerfilUsuario";
+
 import HomePage from "./public/pages/HomePage";
 import CatalogoPage from "./public/pages/CatalogoPage";
 import ProductDetailPage from "./public/pages/ProductDetailPage";
 import ContactPage from "./public/pages/ContactPage";
 
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Ruta pública */}
-         <Route path="/" element={<HomePage />} />
-         <Route path="/contacto" element={<ContactPage />} />
-        <Route path="/producto/:id" element={<ProductDetailPage />} />
-        <Route path="/catalogo" element={<CatalogoPage />} />
-        <Route path="/" element={<LoginPage />} />
 
-        {/* Rutas protegidas */}
+        {/* RUTAS PÚBLICAS */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/catalogo" element={<CatalogoPage />} />
+        <Route path="/producto/:id" element={<ProductDetailPage />} />
+        <Route path="/contacto" element={<ContactPage />} />
+
+        {/* LOGIN */}
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* RUTAS PROTEGIDAS */}
         <Route
           path="/dashboard"
           element={
@@ -72,6 +75,15 @@ function App() {
           element={
             <ProtectedRoute>
               <RegistrarVenta />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/ventas/historial"
+          element={
+            <ProtectedRoute>
+              <HistorialVentas />
             </ProtectedRoute>
           }
         />
@@ -121,14 +133,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/ventas/historial"
-          element={
-            <ProtectedRoute>
-              <HistorialVentas />
-            </ProtectedRoute>
-          }
-        />
+
         <Route
           path="/perfil"
           element={
@@ -137,6 +142,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
       </Routes>
     </BrowserRouter>
   );

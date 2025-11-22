@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import LoaderOverlay from "../components/ui/LoaderOverlay";
+import LoaderOverlay from "../../components/ui/LoaderOverlay";
 import { motion } from "framer-motion";
 
 export default function LoginPage() {
