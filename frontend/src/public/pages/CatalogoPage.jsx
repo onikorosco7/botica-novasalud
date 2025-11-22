@@ -1,7 +1,7 @@
 // src/pages/CatalogoPage.jsx
 import { useEffect, useState } from "react";
-import PublicLayout from "../PublicLayout";
-import { getProductos } from "../../../services/productService";
+import PublicLayout from "../../layout/public/PublicLayout";
+import { getProductos } from "../../services/productService";
 
 import { Link } from "react-router-dom";
 

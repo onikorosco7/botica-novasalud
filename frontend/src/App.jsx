@@ -13,8 +13,11 @@ import InventarioReporte from "./pages/reportes/InventarioReporte";
 import ProtectedRoute from "./components/ProtectedRoute";
 import HistorialVentas from "./pages/ventas/HistorialVentas";
 import PerfilUsuario from "./pages/perfil/PerfilUsuario";
-import HomePage from "./layout/public/pages/HomePage";
-import CatalogoPage from "./layout/public/pages/CatalogoPage";
+import HomePage from "./public/pages/HomePage";
+import CatalogoPage from "./public/pages/CatalogoPage";
+import ProductDetailPage from "./public/pages/ProductDetailPage";
+import ContactPage from "./public/pages/ContactPage";
+
 
 function App() {
   return (
@@ -22,7 +25,8 @@ function App() {
       <Routes>
         {/* Ruta pública */}
          <Route path="/" element={<HomePage />} />
-        {/* Más adelante: catálogo, producto, nosotros, contacto */}
+         <Route path="/contacto" element={<ContactPage />} />
+        <Route path="/producto/:id" element={<ProductDetailPage />} />
         <Route path="/catalogo" element={<CatalogoPage />} />
         <Route path="/" element={<LoginPage />} />
 

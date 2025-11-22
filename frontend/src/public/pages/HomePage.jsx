@@ -1,6 +1,6 @@
 // src/pages/HomePage.jsx
 import { Link } from "react-router-dom";
-import PublicLayout from "../PublicLayout";
+import PublicLayout from "../../layout/public/PublicLayout";
 
 export default function HomePage() {
   // Productos de ejemplo por ahora (luego podemos conectarlo al backend)
