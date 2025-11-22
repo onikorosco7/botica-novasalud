@@ -31,6 +31,9 @@ export default function PublicLayout({ children }) {
             <Link to="/nosotros" className="hover:text-blue-700 transition">
               Nosotros
             </Link>
+            <Link to="/servicios" className="hover:text-blue-700 transition">
+              Servicios
+            </Link>
             <Link to="/contacto" className="hover:text-blue-700 transition">
               Contacto
             </Link>

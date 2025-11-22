@@ -19,6 +19,7 @@ import CatalogoPage from "./public/pages/CatalogoPage";
 import ProductDetailPage from "./public/pages/ProductDetailPage";
 import ContactPage from "./public/pages/ContactPage";
 import AboutPage from "./public/pages/AboutPage";
+import ServicesPage from "./public/pages/ServicesPage";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/producto/:id" element={<ProductDetailPage />} />
         <Route path="/contacto" element={<ContactPage />} />
         <Route path="/nosotros" element={<AboutPage />} />
+        <Route path="/servicios" element={<ServicesPage />} />
 
         {/* LOGIN */}
         <Route path="/login" element={<LoginPage />} />
