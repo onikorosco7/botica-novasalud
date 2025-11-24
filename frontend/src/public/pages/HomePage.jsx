@@ -1,47 +1,34 @@
 // src/pages/HomePage.jsx
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import PublicLayout from "../../layout/public/PublicLayout";
+import { getDestacadosPublic } from "../../services/productPublicService";
 
 export default function HomePage() {
-  // Productos de ejemplo por ahora (luego podemos conectarlo al backend)
-  const destacados = [
-    {
-      id: 1,
-      nombre: "Paracetamol 500 mg",
-      descripcion: "Alivio rápido del dolor y la fiebre.",
-      precio: 5.9,
-    },
-    {
-      id: 2,
-      nombre: "Ibuprofeno 400 mg",
-      descripcion: "Antiinflamatorio y analgésico de amplio uso.",
-      precio: 8.5,
-    },
-    {
-      id: 3,
-      nombre: "Vitamina C 1 g",
-      descripcion: "Refuerza el sistema inmunológico.",
-      precio: 12.0,
-    },
-  ];
+  const [destacados, setDestacados] = useState([]);
 
+  useEffect(() => {
+    const cargar = async () => {
+      const data = await getDestacadosPublic();
+      setDestacados(data);
+    };
+    cargar();
+  }, []);
   return (
     <PublicLayout>
       {/* HERO */}
       <section className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white">
         <div className="max-w-6xl mx-auto px-4 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
-          {/* Texto */}
           <div>
             <p className="text-sm uppercase tracking-[0.3em] text-blue-200 mb-3">
               BOTICA NOVASALUD
             </p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
               Salud, confianza y atención profesional
             </h1>
             <p className="mt-4 text-blue-100 text-sm md:text-base">
-              En Botica NovaSalud encuentras medicamentos de calidad,
-              orientación farmacéutica y un servicio cercano para cuidar lo
-              más importante: tu bienestar y el de tu familia.
+              En Botica NovaSalud encuentras medicamentos de calidad y atención
+              cercana.
             </p>
 
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -49,7 +36,7 @@ export default function HomePage() {
                 to="/catalogo"
                 className="inline-flex justify-center px-6 py-3 rounded-lg bg-white text-blue-800 font-semibold text-sm shadow hover:bg-blue-50 transition"
               >
-                Ver catálogo de productos
+                Ver catálogo
               </Link>
               <a
                 href="https://wa.me/51999999999"
@@ -57,66 +44,39 @@ export default function HomePage() {
                 rel="noreferrer"
                 className="inline-flex justify-center px-6 py-3 rounded-lg border border-blue-200 text-white text-sm font-semibold hover:bg-blue-800/40 transition"
               >
-                Consultar por WhatsApp
+                WhatsApp
               </a>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-4 text-xs text-blue-100">
-              <span className="inline-flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                Atención farmacéutica profesional
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                Productos originales y seguros
-              </span>
             </div>
           </div>
 
-          {/* Imagen simple (puedes reemplazarla por una real en /public) */}
+          {/* Imagen */}
           <div className="relative">
-            <div className="rounded-3xl bg-white/10 border border-blue-300/30 p-6 backdrop-blur flex flex-col gap-4 shadow-2xl">
-              <div className="h-40 rounded-2xl bg-gradient-to-br from-sky-100 to-blue-50 border border-blue-100 flex items-center justify-center">
+            <div className="rounded-3xl bg-white/10 border border-blue-300/30 p-6 backdrop-blur shadow-2xl">
+              <div className="h-40 rounded-2xl bg-gradient-to-br from-sky-100 to-blue-50 border flex items-center justify-center">
                 <p className="text-blue-800 font-semibold text-center px-6">
-                  “Tu salud, nuestra prioridad.  
-                  Siempre cerca cuando más nos necesitas.”
+                  “Tu salud, nuestra prioridad.”
                 </p>
-              </div>
-              <div className="grid grid-cols-3 gap-3 text-center text-xs text-blue-100">
-                <div className="p-3 rounded-xl bg-blue-900/40 border border-blue-600/40">
-                  <p className="font-semibold text-base">+500</p>
-                  <p>Productos</p>
-                </div>
-                <div className="p-3 rounded-xl bg-blue-900/40 border border-blue-600/40">
-                  <p className="font-semibold text-base">24/7</p>
-                  <p>Atención online</p>
-                </div>
-                <div className="p-3 rounded-xl bg-blue-900/40 border border-blue-600/40">
-                  <p className="font-semibold text-base">100%</p>
-                  <p>Confianza</p>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* PRODUCTOS DESTACADOS */}
+      {/* DESTACADOS */}
       <section className="max-w-6xl mx-auto px-4 py-14">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-2xl font-semibold text-slate-900">
-              Productos destacados
-            </h2>
+            <h2 className="text-2xl font-semibold">Productos destacados</h2>
             <p className="text-sm text-slate-500">
-              Algunos de los medicamentos más consultados por nuestros clientes.
+              Los más buscados por nuestros clientes.
             </p>
           </div>
+
           <Link
             to="/catalogo"
             className="text-sm text-blue-700 font-semibold hover:underline"
           >
-            Ver todo el catálogo
+            Ver todo
           </Link>
         </div>
 
@@ -124,19 +84,18 @@ export default function HomePage() {
           {destacados.map((p) => (
             <article
               key={p.id}
-              className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 hover:shadow-md hover:-translate-y-1 transition"
+              className="bg-white rounded-2xl p-5 border shadow-sm"
             >
-              <p className="text-xs text-emerald-600 font-semibold mb-1">
-                Recomendado
-              </p>
-              <h3 className="font-semibold text-slate-900">{p.nombre}</h3>
-              <p className="text-sm text-slate-500 mt-1">{p.descripcion}</p>
+              <p className="text-xs text-emerald-600 mb-1">Recomendado</p>
+              <h3 className="font-semibold">{p.nombre}</h3>
+              <p className="text-sm text-slate-500 mt-1">{p.laboratorio}</p>
               <p className="mt-4 text-lg font-bold text-blue-700">
-                S/. {p.precio.toFixed(2)}
+                S/. {p.precio}
               </p>
+
               <Link
                 to={`/producto/${p.id}`}
-                className="mt-3 inline-flex text-sm text-blue-700 font-semibold hover:underline"
+                className="mt-3 inline-block text-blue-700 hover:underline"
               >
                 Ver detalles
               </Link>
