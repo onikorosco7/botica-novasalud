@@ -4,7 +4,7 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
-  getLowStockProducts
+  getLowStockProducts,
 } from "../models/ProductModel.js";
 
 // Obtener todos los productos
@@ -13,7 +13,35 @@ export const listarProductos = async (req, res) => {
     const productos = await getAllProducts();
     res.json(productos);
   } catch (error) {
-    res.status(500).json({ message: "Error al obtener productos", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error al obtener productos", error: error.message });
+  }
+};
+
+// Buscar producto por nombre
+export const buscarProductos = async (req, res) => {
+  try {
+    const { q } = req.query;
+
+    if (!q) {
+      return res.status(400).json({ message: "Debe enviar parámetro q" });
+    }
+
+    const productos = await searchProducts(q);
+    res.json(productos);
+  } catch (error) {
+    res.status(500).json({ message: "Error al buscar productos" });
+  }
+};
+
+// Productos destacados
+export const productosDestacados = async (req, res) => {
+  try {
+    const productos = await getFeaturedProducts();
+    res.json(productos);
+  } catch (error) {
+    res.status(500).json({ message: "Error al obtener productos destacados" });
   }
 };
 
@@ -21,11 +49,14 @@ export const listarProductos = async (req, res) => {
 export const obtenerProducto = async (req, res) => {
   try {
     const producto = await getProductById(req.params.id);
-    if (!producto) return res.status(404).json({ message: "Producto no encontrado" });
+    if (!producto)
+      return res.status(404).json({ message: "Producto no encontrado" });
 
     res.json(producto);
   } catch (error) {
-    res.status(500).json({ message: "Error al obtener producto", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error al obtener producto", error: error.message });
   }
 };
 
@@ -35,17 +66,27 @@ export const crearProducto = async (req, res) => {
     const { nombre, laboratorio, precio, stock, stock_minimo } = req.body;
 
     if (!nombre || !precio) {
-      return res.status(400).json({ message: "Nombre y precio son obligatorios." });
+      return res
+        .status(400)
+        .json({ message: "Nombre y precio son obligatorios." });
     }
 
-    const id = await createProduct(nombre, laboratorio, precio, stock, stock_minimo);
+    const id = await createProduct(
+      nombre,
+      laboratorio,
+      precio,
+      stock,
+      stock_minimo
+    );
 
     res.json({
       message: "Producto creado exitosamente",
       producto: { id, nombre, laboratorio, precio, stock, stock_minimo },
     });
   } catch (error) {
-    res.status(500).json({ message: "Error al crear producto", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error al crear producto", error: error.message });
   }
 };
 
@@ -56,13 +97,16 @@ export const actualizarProducto = async (req, res) => {
     const id = req.params.id;
 
     const existe = await getProductById(id);
-    if (!existe) return res.status(404).json({ message: "Producto no encontrado" });
+    if (!existe)
+      return res.status(404).json({ message: "Producto no encontrado" });
 
     await updateProduct(id, nombre, laboratorio, precio, stock, stock_minimo);
 
     res.json({ message: "Producto actualizado exitosamente" });
   } catch (error) {
-    res.status(500).json({ message: "Error al actualizar producto", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error al actualizar producto", error: error.message });
   }
 };
 
@@ -72,11 +116,14 @@ export const eliminarProducto = async (req, res) => {
     const id = req.params.id;
 
     const eliminado = await deleteProduct(id);
-    if (eliminado === 0) return res.status(404).json({ message: "Producto no encontrado" });
+    if (eliminado === 0)
+      return res.status(404).json({ message: "Producto no encontrado" });
 
     res.json({ message: "Producto eliminado correctamente" });
   } catch (error) {
-    res.status(500).json({ message: "Error al eliminar producto", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error al eliminar producto", error: error.message });
   }
 };
 
@@ -86,12 +133,12 @@ export const productosStockBajo = async (req, res) => {
     const productos = await getLowStockProducts();
     res.json({
       message: "Productos con stock bajo",
-      productos
+      productos,
     });
   } catch (error) {
     res.status(500).json({
       message: "Error al obtener productos con bajo stock",
-      error: error.message
+      error: error.message,
     });
   }
 };

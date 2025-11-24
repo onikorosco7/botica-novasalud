@@ -2,7 +2,9 @@ import pool from "../config/db.js";
 
 // Obtener todos los productos
 export const getAllProducts = async () => {
-  const [rows] = await pool.query("SELECT * FROM productos ORDER BY nombre ASC");
+  const [rows] = await pool.query(
+    "SELECT * FROM productos ORDER BY nombre ASC"
+  );
   return rows;
 };
 
@@ -12,8 +14,31 @@ export const getProductById = async (id) => {
   return rows[0];
 };
 
+// Buscar producto por nombre
+export const searchProducts = async (term) => {
+  const [rows] = await pool.query(
+    "SELECT * FROM productos WHERE nombre LIKE ? ORDER BY nombre ASC",
+    [`%${term}%`]
+  );
+  return rows;
+};
+
+// Productos destacados
+export const getFeaturedProducts = async () => {
+  const [rows] = await pool.query(
+    "SELECT * FROM productos ORDER BY precio DESC LIMIT 4"
+  );
+  return rows;
+};
+
 // Crear producto
-export const createProduct = async (nombre, laboratorio, precio, stock, stock_minimo) => {
+export const createProduct = async (
+  nombre,
+  laboratorio,
+  precio,
+  stock,
+  stock_minimo
+) => {
   const [result] = await pool.query(
     "INSERT INTO productos (nombre, laboratorio, precio, stock, stock_minimo) VALUES (?, ?, ?, ?, ?)",
     [nombre, laboratorio, precio, stock, stock_minimo]
@@ -22,7 +47,14 @@ export const createProduct = async (nombre, laboratorio, precio, stock, stock_mi
 };
 
 // Actualizar producto
-export const updateProduct = async (id, nombre, laboratorio, precio, stock, stock_minimo) => {
+export const updateProduct = async (
+  id,
+  nombre,
+  laboratorio,
+  precio,
+  stock,
+  stock_minimo
+) => {
   const [result] = await pool.query(
     "UPDATE productos SET nombre=?, laboratorio=?, precio=?, stock=?, stock_minimo=? WHERE id=?",
     [nombre, laboratorio, precio, stock, stock_minimo, id]
@@ -43,4 +75,3 @@ export const getLowStockProducts = async () => {
   );
   return rows;
 };
-
