@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getInventarioReporte } from "../../services/reportService";
-import AdminLayout from "../../layout/Admin/AdminLayout";
-import LoaderOverlay from "../../components/ui/LoaderOverlay";
+import { getInventarioReporte } from "../../../services/reportService";
+import AdminLayout from "../../../layout/Admin/AdminLayout";
+import LoaderOverlay from "../../../components/ui/LoaderOverlay";
 
 export default function InventarioReporte() {
   const [data, setData] = useState([]);
@@ -25,12 +25,24 @@ export default function InventarioReporte() {
   // Skeleton
   const SkeletonRow = () => (
     <tr className="animate-pulse">
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-32"></div></td>
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-24"></div></td>
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-20"></div></td>
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-12"></div></td>
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-12"></div></td>
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-20"></div></td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-32"></div>
+      </td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-24"></div>
+      </td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-20"></div>
+      </td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-12"></div>
+      </td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-12"></div>
+      </td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-20"></div>
+      </td>
     </tr>
   );
 
@@ -98,8 +110,7 @@ export default function InventarioReporte() {
 
           <tbody>
             {/* Skeleton */}
-            {loading &&
-              [...Array(6)].map((_, i) => <SkeletonRow key={i} />)}
+            {loading && [...Array(6)].map((_, i) => <SkeletonRow key={i} />)}
 
             {/* No resultados */}
             {!loading && filtered.length === 0 && (
@@ -116,7 +127,10 @@ export default function InventarioReporte() {
                 const status = getStatus(p.stock, p.stock_minimo);
 
                 return (
-                  <tr key={p.id} className="border-b hover:bg-gray-50 transition">
+                  <tr
+                    key={p.id}
+                    className="border-b hover:bg-gray-50 transition"
+                  >
                     <td className="p-3">{p.nombre}</td>
                     <td className="p-3">{p.laboratorio}</td>
                     <td className="p-3">S/. {p.precio}</td>

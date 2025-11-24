@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getVentasTotales } from "../../services/reportService";
-import AdminLayout from "../../layout/Admin/AdminLayout";
-import LoaderOverlay from "../../components/ui/LoaderOverlay";
+import { getVentasTotales } from "../../../services/reportService";
+import AdminLayout from "../../../layout/Admin/AdminLayout";
+import LoaderOverlay from "../../../components/ui/LoaderOverlay";
 import { toast } from "react-toastify";
 
 export default function VentasTotales() {

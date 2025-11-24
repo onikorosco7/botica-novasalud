@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
-import { getTopProductos } from "../../services/reportService";
-import AdminLayout from "../../layout/Admin/AdminLayout";
-import LoaderOverlay from "../../components/ui/LoaderOverlay";
+import { getTopProductos } from "../../../services/reportService";
+import AdminLayout from "../../../layout/Admin/AdminLayout";
+import LoaderOverlay from "../../../components/ui/LoaderOverlay";
 import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -14,8 +21,12 @@ export default function TopProductos() {
   // Skeleton loader fila tabla
   const SkeletonRow = () => (
     <tr className="animate-pulse">
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-40"></div></td>
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-16"></div></td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-40"></div>
+      </td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-16"></div>
+      </td>
     </tr>
   );
 
@@ -78,8 +89,7 @@ export default function TopProductos() {
 
           <tbody>
             {/* Skeleton Loader */}
-            {loading &&
-              [...Array(5)].map((_, i) => <SkeletonRow key={i} />)}
+            {loading && [...Array(5)].map((_, i) => <SkeletonRow key={i} />)}
 
             {/* Datos */}
             {!loading &&

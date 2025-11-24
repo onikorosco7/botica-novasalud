@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import {
   obtenerProducto,
   actualizarProducto,
-} from "../../services/productService";
-import AdminLayout from "../../layout/Admin/AdminLayout";
+} from "../../../services/productService";
+import AdminLayout from "../../../layout/Admin/AdminLayout";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import LoaderOverlay from "../../components/ui/LoaderOverlay";
+import LoaderOverlay from "../../../components/ui/LoaderOverlay";
 
 export default function EditarProducto() {
   const { id } = useParams();
@@ -103,7 +103,6 @@ export default function EditarProducto() {
         <h1 className="text-2xl font-bold mb-6">Editar Producto</h1>
 
         <div className="bg-white p-6 rounded shadow w-96">
-
           {loading ? (
             <>
               <SkeletonInput />

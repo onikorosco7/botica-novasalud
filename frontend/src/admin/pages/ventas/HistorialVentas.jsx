@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { obtenerHistorialVentas } from "../../services/saleService";
-import AdminLayout from "../../layout/Admin/AdminLayout";
-import LoaderOverlay from "../../components/ui/LoaderOverlay";
+import { obtenerHistorialVentas } from "../../../services/saleService";
+import AdminLayout from "../../../layout/Admin/AdminLayout";
+import LoaderOverlay from "../../../components/ui/LoaderOverlay";
 import { toast } from "react-toastify";
 
 export default function HistorialVentas() {
@@ -14,10 +14,18 @@ export default function HistorialVentas() {
   // Loader skeleton
   const SkeletonRow = () => (
     <tr className="animate-pulse">
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-20"></div></td>
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-24"></div></td>
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-32"></div></td>
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-16"></div></td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-20"></div>
+      </td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-24"></div>
+      </td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-32"></div>
+      </td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-16"></div>
+      </td>
     </tr>
   );
 
@@ -97,8 +105,7 @@ export default function HistorialVentas() {
 
           <tbody>
             {/* Skeleton */}
-            {loading &&
-              [...Array(5)].map((_, i) => <SkeletonRow key={i} />)}
+            {loading && [...Array(5)].map((_, i) => <SkeletonRow key={i} />)}
 
             {/* Sin resultados */}
             {!loading && filtered.length === 0 && (
@@ -118,7 +125,7 @@ export default function HistorialVentas() {
                   <td className="p-3">
                     {new Date(v.fecha).toLocaleString("es-PE")}
                   </td>
-                  
+
                   <td
                     className={`p-3 font-bold ${
                       Number(v.total) > 100

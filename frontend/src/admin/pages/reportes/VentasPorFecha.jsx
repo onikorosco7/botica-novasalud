@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { getVentasPorFecha } from "../../services/reportService";
-import AdminLayout from "../../layout/Admin/AdminLayout";
-import LoaderOverlay from "../../components/ui/LoaderOverlay";
+import { getVentasPorFecha } from "../../../services/reportService";
+import AdminLayout from "../../../layout/Admin/AdminLayout";
+import LoaderOverlay from "../../../components/ui/LoaderOverlay";
 import { toast } from "react-toastify";
 
 export default function VentasPorFecha() {
@@ -13,10 +13,18 @@ export default function VentasPorFecha() {
   // Skeleton row para tabla
   const SkeletonRow = () => (
     <tr className="animate-pulse">
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-24"></div></td>
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-32"></div></td>
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-40"></div></td>
-      <td className="p-3"><div className="h-4 bg-gray-300 rounded w-20"></div></td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-24"></div>
+      </td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-32"></div>
+      </td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-40"></div>
+      </td>
+      <td className="p-3">
+        <div className="h-4 bg-gray-300 rounded w-20"></div>
+      </td>
     </tr>
   );
 
@@ -85,8 +93,7 @@ export default function VentasPorFecha() {
 
           <tbody>
             {/* Skeleton */}
-            {loading &&
-              [...Array(4)].map((_, i) => <SkeletonRow key={i} />)}
+            {loading && [...Array(4)].map((_, i) => <SkeletonRow key={i} />)}
 
             {/* Si ya buscó y no hay resultados */}
             {searched && !loading && data.length === 0 && (

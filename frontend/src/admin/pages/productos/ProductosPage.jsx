@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import {
   getProductos,
   eliminarProducto,
-} from "../../services/productService";
-import AdminLayout from "../../layout/Admin/AdminLayout";
+} from "../../../services/productService";
+import AdminLayout from "../../../layout/Admin/AdminLayout";
 import { toast } from "react-toastify";
-import LoaderOverlay from "../../components/ui/LoaderOverlay";
+import LoaderOverlay from "../../../components/ui/LoaderOverlay";
 
 export default function ProductosPage() {
   const [productos, setProductos] = useState([]);
@@ -112,8 +112,7 @@ export default function ProductosPage() {
 
           <tbody>
             {/* Skeletons */}
-            {loading &&
-              [...Array(5)].map((_, i) => <SkeletonRow key={i} />)}
+            {loading && [...Array(5)].map((_, i) => <SkeletonRow key={i} />)}
 
             {/* Sin resultados */}
             {!loading && filtered.length === 0 && (

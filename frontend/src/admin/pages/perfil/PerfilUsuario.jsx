@@ -1,7 +1,7 @@
 import { useState } from "react";
-import AdminLayout from "../../layout/Admin/AdminLayout";
+import AdminLayout from "../../../layout/Admin/AdminLayout";
 import axios from "axios";
-import LoaderOverlay from "../../components/ui/LoaderOverlay";
+import LoaderOverlay from "../../../components/ui/LoaderOverlay";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 

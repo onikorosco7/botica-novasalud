@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { crearProducto } from "../../services/productService";
-import AdminLayout from "../../layout/Admin/AdminLayout";
+import { crearProducto } from "../../../services/productService";
+import AdminLayout from "../../../layout/Admin/AdminLayout";
 import { toast } from "react-toastify";
-import LoaderOverlay from "../../components/ui/LoaderOverlay";
+import LoaderOverlay from "../../../components/ui/LoaderOverlay";
 
 export default function CrearProducto() {
   const [form, setForm] = useState({
@@ -82,7 +82,6 @@ export default function CrearProducto() {
         <h1 className="text-2xl font-bold mb-6">Crear Producto</h1>
 
         <div className="bg-white p-6 rounded shadow w-96">
-
           {/* CAMPO NOMBRE */}
           <label className="font-semibold">Nombre:</label>
           <input

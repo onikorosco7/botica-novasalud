@@ -45,7 +45,6 @@ export default function LoginPage() {
 
       {/* Fondo premium */}
       <div className="h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-800 p-6">
-
         {/* Card animado */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}

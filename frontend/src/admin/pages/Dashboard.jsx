@@ -19,9 +19,9 @@ import {
   getTopProductos,
   getVentasTotales,
   getInventario,
-} from "../services/dashboardService";
+} from "../../services/dashboardService";
 
-import LoaderOverlay from "../components/ui/LoaderOverlay";
+import LoaderOverlay from "../../components/ui/LoaderOverlay";
 import { motion } from "framer-motion";
 import {
   BanknotesIcon,

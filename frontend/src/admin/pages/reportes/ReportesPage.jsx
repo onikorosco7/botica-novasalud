@@ -1,5 +1,10 @@
-import AdminLayout from "../../layout/Admin/AdminLayout";
-import { ChartBarIcon, CalendarDaysIcon, ArrowTrendingUpIcon, ClipboardDocumentListIcon } from "@heroicons/react/24/outline";
+import AdminLayout from "../../../layout/Admin/AdminLayout";
+import {
+  ChartBarIcon,
+  CalendarDaysIcon,
+  ArrowTrendingUpIcon,
+  ClipboardDocumentListIcon,
+} from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 
 export default function ReportesPage() {
@@ -39,7 +44,6 @@ export default function ReportesPage() {
       <h1 className="text-3xl font-bold mb-8">Reportes</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
         {cards.map((card, i) => {
           const Icon = card.icon;
 
@@ -53,7 +57,9 @@ export default function ReportesPage() {
               className="group p-6 bg-white/70 backdrop-blur-lg border border-gray-200 shadow-lg rounded-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
             >
               {/* ICON */}
-              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${card.color} flex items-center justify-center text-white mb-4 shadow-md group-hover:scale-105 transition`}>
+              <div
+                className={`w-14 h-14 rounded-xl bg-gradient-to-br ${card.color} flex items-center justify-center text-white mb-4 shadow-md group-hover:scale-105 transition`}
+              >
                 <Icon className="w-7 h-7" />
               </div>
 
@@ -63,7 +69,6 @@ export default function ReportesPage() {
             </motion.a>
           );
         })}
-
       </div>
     </AdminLayout>
   );

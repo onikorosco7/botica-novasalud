@@ -1,19 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import Dashboard from "./pages/Dashboard";
-import ProductosPage from "./pages/productos/ProductosPage";
-import CrearProducto from "./pages/productos/CrearProducto";
-import EditarProducto from "./pages/productos/EditarProducto";
-import RegistrarVenta from "./pages/ventas/RegistrarVenta";
-import ReportesPage from "./pages/reportes/ReportesPage";
-import VentasTotales from "./pages/reportes/VentasTotales";
-import VentasPorFecha from "./pages/reportes/VentasPorFecha";
-import TopProductos from "./pages/reportes/TopProductos";
-import InventarioReporte from "./pages/reportes/InventarioReporte";
+import LoginPage from "./admin/pages/LoginPage";
+import Dashboard from "./admin/pages/Dashboard";
+import ProductosPage from "./admin/pages/productos/ProductosPage";
+import CrearProducto from "./admin/pages/productos/CrearProducto";
+import EditarProducto from "./admin/pages/productos/EditarProducto";
+import RegistrarVenta from "./admin/pages/ventas/RegistrarVenta";
+import ReportesPage from "./admin/pages/reportes/ReportesPage";
+import VentasTotales from "./admin/pages/reportes/VentasTotales";
+import VentasPorFecha from "./admin/pages/reportes/VentasPorFecha";
+import TopProductos from "./admin/pages/reportes/TopProductos";
+import InventarioReporte from "./admin/pages/reportes/InventarioReporte";
 import ProtectedRoute from "./components/ProtectedRoute";
-import HistorialVentas from "./pages/ventas/HistorialVentas";
-import PerfilUsuario from "./pages/perfil/PerfilUsuario";
-
+import HistorialVentas from "./admin/pages/ventas/HistorialVentas";
+import PerfilUsuario from "./admin/pages/perfil/PerfilUsuario";
 import HomePage from "./public/pages/HomePage";
 import CatalogoPage from "./public/pages/CatalogoPage";
 import ProductDetailPage from "./public/pages/ProductDetailPage";
@@ -21,12 +20,10 @@ import ContactPage from "./public/pages/ContactPage";
 import AboutPage from "./public/pages/AboutPage";
 import ServicesPage from "./public/pages/ServicesPage";
 
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-
         {/* RUTAS PÚBLICAS */}
         <Route path="/" element={<HomePage />} />
         <Route path="/catalogo" element={<CatalogoPage />} />
@@ -147,7 +144,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
       </Routes>
     </BrowserRouter>
   );
