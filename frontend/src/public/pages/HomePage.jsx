@@ -66,17 +66,15 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4 py-14">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-2xl font-semibold">Productos destacados</h2>
+            <h2 className="text-2xl font-semibold text-slate-900">
+              Productos destacados
+            </h2>
             <p className="text-sm text-slate-500">
-              Los más buscados por nuestros clientes.
+              Selección de medicamentos más buscados.
             </p>
           </div>
-
-          <Link
-            to="/catalogo"
-            className="text-sm text-blue-700 font-semibold hover:underline"
-          >
-            Ver todo
+          <Link to="/catalogo" className="text-sm text-blue-700 font-semibold">
+            Ver catálogo completo
           </Link>
         </div>
 
@@ -84,18 +82,19 @@ export default function HomePage() {
           {destacados.map((p) => (
             <article
               key={p.id}
-              className="bg-white rounded-2xl p-5 border shadow-sm"
+              className="bg-white rounded-2xl shadow-sm border p-5 hover:shadow-md transition"
             >
-              <p className="text-xs text-emerald-600 mb-1">Recomendado</p>
-              <h3 className="font-semibold">{p.nombre}</h3>
-              <p className="text-sm text-slate-500 mt-1">{p.laboratorio}</p>
-              <p className="mt-4 text-lg font-bold text-blue-700">
-                S/. {p.precio}
+              <p className="text-xs text-emerald-600 font-semibold mb-1">
+                Recomendado
               </p>
-
+              <h3 className="font-semibold">{p.nombre}</h3>
+              <p className="text-sm text-slate-500">{p.laboratorio}</p>
+              <p className="mt-4 text-lg font-bold text-blue-700">
+                S/. {Number(p.precio).toFixed(2)}
+              </p>
               <Link
                 to={`/producto/${p.id}`}
-                className="mt-3 inline-block text-blue-700 hover:underline"
+                className="mt-3 inline-flex text-sm text-blue-700 hover:underline"
               >
                 Ver detalles
               </Link>
@@ -103,7 +102,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
       {/* POR QUÉ ELEGIRNOS */}
       <section className="bg-white border-y border-slate-200">
         <div className="max-w-6xl mx-auto px-4 py-14 grid md:grid-cols-3 gap-8">

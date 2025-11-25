@@ -20,15 +20,16 @@ export default function CrearProducto() {
   const validar = () => {
     let nuevosErrores = {};
 
-    // Solo letras para nombre y laboratorio
-    const soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/;
+    // Solo letras y números para nombre y laboratorio
+    const soloLetras = /^[A-Za-z0-9ÁÉÍÓÚáéíóúñÑ ]+$/;
 
     if (!form.nombre || !soloLetras.test(form.nombre)) {
-      nuevosErrores.nombre = "El nombre solo debe contener letras.";
+      nuevosErrores.nombre = "El nombre solo debe contener letras y números.";
     }
 
     if (!form.laboratorio || !soloLetras.test(form.laboratorio)) {
-      nuevosErrores.laboratorio = "El laboratorio solo debe contener letras.";
+      nuevosErrores.laboratorio =
+        "El laboratorio solo debe contener letras y números.";
     }
 
     // Solo números para precio, stock y stock_minimo

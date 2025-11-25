@@ -1,7 +1,10 @@
 // src/pages/CatalogoPage.jsx
 import { useEffect, useState } from "react";
 import PublicLayout from "../../layout/public/PublicLayout";
-import { getProductosPublic } from "../../services/productPublicService";
+import {
+  getProductosPublic,
+  searchProductosPublic,
+} from "../../services/productPublicService";
 import { Link } from "react-router-dom";
 
 export default function CatalogoPage() {
@@ -29,6 +32,14 @@ export default function CatalogoPage() {
     }
   };
 
+  const buscar = async (q) => {
+    try {
+      const data = await searchProductosPublic(q);
+      setProductos(data);
+    } catch (error) {
+      console.error("Error buscando productos:", error);
+    }
+  };
   const filtrados = productos.filter((p) => {
     const coincideNombre = p.nombre
       .toLowerCase()
@@ -60,7 +71,17 @@ export default function CatalogoPage() {
             type="text"
             placeholder="Buscar producto..."
             className="p-3 border rounded-lg shadow-sm outline-blue-600"
-            onChange={(e) => setBusqueda(e.target.value)}
+            value={busqueda}
+            onChange={(e) => {
+              const q = e.target.value;
+              setBusqueda(q);
+
+              if (q.length >= 2) {
+                buscar(q);
+              } else if (q.length === 0) {
+                cargarProductos();
+              }
+            }}
           />
 
           <select

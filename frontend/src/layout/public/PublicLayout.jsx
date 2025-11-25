@@ -1,5 +1,6 @@
 // src/layout/PublicLayout.jsx
 import { Link } from "react-router-dom";
+import CartFloatingButton from "../../components/CartFloatingButton";
 
 export default function PublicLayout({ children }) {
   return (
@@ -14,9 +15,7 @@ export default function PublicLayout({ children }) {
             </div>
             <div className="leading-tight">
               <p className="font-semibold text-slate-900">Botica NovaSalud</p>
-              <p className="text-xs text-slate-500">
-                Cuidamos tu bienestar
-              </p>
+              <p className="text-xs text-slate-500">Cuidamos tu bienestar</p>
             </div>
           </Link>
 
@@ -50,20 +49,24 @@ export default function PublicLayout({ children }) {
       </header>
 
       {/* CONTENIDO */}
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
 
       {/* FOOTER */}
       <footer className="mt-16 border-t border-slate-200 bg-white">
         <div className="max-w-6xl mx-auto px-4 py-6 text-sm text-slate-600 flex flex-col md:flex-row justify-between gap-3">
-          <p>© {new Date().getFullYear()} Botica NovaSalud. Todos los derechos reservados.</p>
+          <p>
+            © {new Date().getFullYear()} Botica NovaSalud. Todos los derechos
+            reservados.
+          </p>
           <div className="flex gap-4">
             <span>Horario: Lun–Sab 8:00 a 22:00</span>
             <span>Tel: (01) 999-999-999</span>
           </div>
         </div>
       </footer>
+
+      {/* BOTÓN FLOTANTE */}
+      <CartFloatingButton />
 
       {/* BOTÓN WHATSAPP FLOTANTE */}
       <a
