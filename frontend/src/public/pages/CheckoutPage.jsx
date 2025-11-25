@@ -122,7 +122,7 @@ export default function CheckoutPage() {
             No puedes proceder a la compra sin productos.
           </p>
           <Link
-            to="/cart"
+            to="/carrito"
             className="mt-4 inline-block text-blue-600 font-semibold hover:text-blue-700 transition"
           >
             ← Volver al carrito
