@@ -2,13 +2,11 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import pool from "./config/db.js";
-import userRoutes from "./routes/user.routes.js"
+import userRoutes from "./routes/user.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import saleRoutes from "./routes/sale.routes.js";
 import reportRoutes from "./routes/report.routes.js";
-
-
-
+import ventasPublicRouter from "./routes/ventasPublic.js";
 dotenv.config();
 
 const app = express();
@@ -20,7 +18,7 @@ app.use("/api/usuarios", userRoutes);
 app.use("/api/productos", productRoutes);
 app.use("/api/ventas", saleRoutes);
 app.use("/api/reportes", reportRoutes);
-
+app.use("/api/ventas", ventasPublicRouter);
 
 // Ruta de prueba del servidor
 app.get("/", (req, res) => {
