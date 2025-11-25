@@ -1,4 +1,4 @@
-# 🏥 Botica NovaSalud – Sistema Administrativo FullStack
+# Botica NovaSalud – Sistema Administrativo FullStack
 
 Este proyecto es un **sistema administrativo profesional para una botica**, desarrollado con:
 
@@ -10,39 +10,44 @@ Este proyecto es un **sistema administrativo profesional para una botica**, desa
 
 ---
 
-## 🚀 Características principales
+## Características principales
 
-### ✔ Autenticación JWT  
-- Login seguro  
-- Protección de rutas  
-- Roles: administrador  
+### Autenticación JWT
 
-### ✔ Gestión de Productos (CRUD completo)  
-- Crear / editar / eliminar productos  
-- Validaciones avanzadas  
-- Control de stock mínimo  
+- Login seguro
+- Protección de rutas
+- Roles: administrador
+
+### Gestión de Productos (CRUD completo)
+
+- Crear / editar / eliminar productos
+- Validaciones avanzadas
+- Control de stock mínimo
 - Semáforo de stock (Crítico / Bajo / Óptimo)
 
-### ✔ Registro de Ventas  
-- Carrito dinámico  
-- Actualización automática de stock  
-- Registro de detalles por venta  
+### Registro de Ventas
 
-### ✔ Reportes profesionales  
-- Ventas totales  
-- Ventas por fecha  
-- Top productos más vendidos  
-- Inventario general  
+- Carrito dinámico
+- Actualización automática de stock
+- Registro de detalles por venta
+
+### Reportes profesionales
+
+- Ventas totales
+- Ventas por fecha
+- Top productos más vendidos
+- Inventario general
 - Dashboard con gráficos (Line, Bar, Doughnut)
 
-### ✔ Perfil del usuario  
-- Ver datos  
-- Cambiar contraseña  
-- Avatar dinámico  
+### Perfil del usuario
+
+- Ver datos
+- Cambiar contraseña
+- Avatar dinámico
 
 ---
 
-## 📂 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 proyecto-botica/
@@ -68,9 +73,9 @@ proyecto-botica/
 
 ---
 
-## 🛠 Instalación y ejecución
+## Instalación y ejecución
 
-### 1️⃣ Backend
+### Backend
 
 ```
 cd backend
@@ -90,7 +95,7 @@ JWT_SECRET=botica@2025
 
 ---
 
-### 2️⃣ Frontend
+### Frontend
 
 ```
 cd frontend
@@ -106,7 +111,7 @@ VITE_API_URL=http://localhost:4000/api
 
 ---
 
-## 🗄 Base de datos
+## Base de datos
 
 Ejecutar este script para crear la base de datos:
 
@@ -149,41 +154,46 @@ CREATE TABLE detalle_ventas (
 
 ---
 
-## 📊 Dashboard
+## Dashboard
 
 Incluye:
 
-- Gráfico de ventas por día  
-- Top productos  
-- Inventario (Doughnut)  
-- Tarjetas con estadísticas  
-- Animaciones premium + Loader profesional  
+- Gráfico de ventas por día
+- Top productos
+- Inventario (Doughnut)
+- Tarjetas con estadísticas
+- Animaciones premium + Loader profesional
 
 ---
 
-## 📦 Despliegue
+## Despliegue
 
-### Backend  
+### Backend
+
 Compatible con:
+
 - Render
 - Railway
 - CleverCloud
 
-### Frontend  
+### Frontend
+
 Compatible con:
+
 - Vercel (recomendado)
 - Netlify
 
 ---
 
-## 🧑‍💻 Autor  
+## Autor
+
 **Onik Orosco**  
-FullStack Developer & AI Builder  
+FullStack Developer & AI Builder
 
 ---
 
-## 📜 Licencia  
+## Licencia
+
 Uso académico / personal.
 
 ---
-
