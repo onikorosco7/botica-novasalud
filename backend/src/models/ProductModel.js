@@ -37,11 +37,12 @@ export const createProduct = async (
   laboratorio,
   precio,
   stock,
-  stock_minimo
+  stock_minimo,
+  imagen
 ) => {
   const [result] = await pool.query(
-    "INSERT INTO productos (nombre, laboratorio, precio, stock, stock_minimo) VALUES (?, ?, ?, ?, ?)",
-    [nombre, laboratorio, precio, stock, stock_minimo]
+    "INSERT INTO productos (nombre, laboratorio, precio, stock, stock_minimo, imagen) VALUES (?, ?, ?, ?, ?, ?)",
+    [nombre, laboratorio, precio, stock, stock_minimo, imagen]
   );
   return result.insertId;
 };

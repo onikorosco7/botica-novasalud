@@ -9,6 +9,7 @@ import {
   productosDestacados,
   buscarProductos,
 } from "../controllers/ProductController.js";
+import upload from "../config/multer.js";
 
 import {
   authenticateToken,
@@ -28,7 +29,13 @@ router.get("/:id", authenticateToken, obtenerProducto);
 router.get("/alertas/stock-bajo", authenticateToken, productosStockBajo);
 
 // Solo admin
-router.post("/", authenticateToken, authorizeRole(["admin"]), crearProducto);
+router.post(
+  "/",
+  authenticateToken,
+  authorizeRole(["admin"]),
+  upload.single("imagen"),
+  crearProducto
+);
 router.put(
   "/:id",
   authenticateToken,

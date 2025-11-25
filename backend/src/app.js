@@ -18,7 +18,7 @@ app.use("/api/usuarios", userRoutes);
 app.use("/api/productos", productRoutes);
 app.use("/api/ventas", saleRoutes);
 app.use("/api/reportes", reportRoutes);
-app.use("/api/ventas", ventasPublicRouter);
+app.use("/uploads", express.static("public/uploads"));
 
 // Ruta de prueba del servidor
 app.get("/", (req, res) => {

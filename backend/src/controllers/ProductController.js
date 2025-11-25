@@ -64,24 +64,28 @@ export const obtenerProducto = async (req, res) => {
 export const crearProducto = async (req, res) => {
   try {
     const { nombre, laboratorio, precio, stock, stock_minimo } = req.body;
-
-    if (!nombre || !precio) {
-      return res
-        .status(400)
-        .json({ message: "Nombre y precio son obligatorios." });
-    }
+    const imagen = req.file ? req.file.filename : null;
 
     const id = await createProduct(
       nombre,
       laboratorio,
       precio,
       stock,
-      stock_minimo
+      stock_minimo,
+      imagen
     );
 
     res.json({
       message: "Producto creado exitosamente",
-      producto: { id, nombre, laboratorio, precio, stock, stock_minimo },
+      producto: {
+        id,
+        nombre,
+        laboratorio,
+        precio,
+        stock,
+        stock_minimo,
+        imagen,
+      },
     });
   } catch (error) {
     res
