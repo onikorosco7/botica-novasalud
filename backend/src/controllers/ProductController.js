@@ -1,3 +1,4 @@
+import pool from "../config/db.js";
 import {
   getAllProducts,
   getProductById,
@@ -5,6 +6,8 @@ import {
   updateProduct,
   deleteProduct,
   getLowStockProducts,
+  searchProducts,
+  getFeaturedProducts,
 } from "../models/ProductModel.js";
 
 // Obtener todos los productos
@@ -97,20 +100,38 @@ export const crearProducto = async (req, res) => {
 // Actualizar producto
 export const actualizarProducto = async (req, res) => {
   try {
-    const { nombre, laboratorio, precio, stock, stock_minimo } = req.body;
     const id = req.params.id;
+    const { nombre, laboratorio, precio, stock, stock_minimo } = req.body;
 
-    const existe = await getProductById(id);
-    if (!existe)
+    const producto = await getProductById(id);
+    if (!producto)
       return res.status(404).json({ message: "Producto no encontrado" });
 
-    await updateProduct(id, nombre, laboratorio, precio, stock, stock_minimo);
+    let nuevaImagen = producto.imagen;
 
-    res.json({ message: "Producto actualizado exitosamente" });
+    // Si viene un archivo, reemplaza imagen
+    if (req.file) {
+      nuevaImagen = req.file.filename;
+    }
+
+    // Si el frontend envió "REMOVE"
+    if (req.body.imagen === "REMOVE") {
+      nuevaImagen = null;
+    }
+
+    await pool.query(
+      `UPDATE productos 
+       SET nombre=?, laboratorio=?, precio=?, stock=?, stock_minimo=?, imagen=?
+       WHERE id=?`,
+      [nombre, laboratorio, precio, stock, stock_minimo, nuevaImagen, id]
+    );
+
+    res.json({ message: "Producto actualizado correctamente" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error al actualizar producto", error: error.message });
+    res.status(500).json({
+      message: "Error al actualizar producto",
+      error: error.message,
+    });
   }
 };
 

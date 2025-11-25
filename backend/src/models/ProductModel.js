@@ -54,12 +54,16 @@ export const updateProduct = async (
   laboratorio,
   precio,
   stock,
-  stock_minimo
+  stock_minimo,
+  imagen
 ) => {
   const [result] = await pool.query(
-    "UPDATE productos SET nombre=?, laboratorio=?, precio=?, stock=?, stock_minimo=? WHERE id=?",
-    [nombre, laboratorio, precio, stock, stock_minimo, id]
+    `UPDATE productos 
+     SET nombre=?, laboratorio=?, precio=?, stock=?, stock_minimo=?, imagen=?
+     WHERE id=?`,
+    [nombre, laboratorio, precio, stock, stock_minimo, imagen, id]
   );
+
   return result.affectedRows;
 };
 

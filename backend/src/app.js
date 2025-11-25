@@ -17,6 +17,8 @@ app.use(express.json());
 app.use("/api/usuarios", userRoutes);
 app.use("/api/productos", productRoutes);
 app.use("/api/ventas", saleRoutes);
+app.use("/api/ventas", ventasPublicRouter);
+
 app.use("/api/reportes", reportRoutes);
 app.use("/uploads", express.static("public/uploads"));
 

@@ -35,7 +35,16 @@ export const getTopProducts = async () => {
 // Reporte: Inventario general
 export const getInventoryReport = async () => {
   const [rows] = await pool.query(
-    "SELECT id, nombre, laboratorio, precio, stock, stock_minimo FROM productos ORDER BY nombre ASC"
+    `SELECT 
+        id, 
+        nombre, 
+        laboratorio, 
+        precio, 
+        stock, 
+        stock_minimo,
+        imagen
+     FROM productos 
+     ORDER BY nombre ASC`
   );
   return rows;
 };
