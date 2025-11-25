@@ -87,7 +87,20 @@ export default function HomePage() {
               <p className="text-xs text-emerald-600 font-semibold mb-1">
                 Recomendado
               </p>
-              <h3 className="font-semibold">{p.nombre}</h3>
+              <div className="h-28 bg-white flex items-center justify-center border rounded-xl overflow-hidden mb-3">
+                {p.imagen ? (
+                  <img
+                    src={`http://localhost:4000/uploads/${p.imagen}`}
+                    alt={p.nombre}
+                    className="w-full h-full object-contain p-2"
+                  />
+                ) : (
+                  <span className="text-blue-600 font-semibold px-2 text-center">
+                    {p.nombre}
+                  </span>
+                )}
+              </div>
+
               <p className="text-sm text-slate-500">{p.laboratorio}</p>
               <p className="mt-4 text-lg font-bold text-blue-700">
                 S/. {Number(p.precio).toFixed(2)}

@@ -10,9 +10,11 @@ export default function PublicLayout({ children }) {
         <nav className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
           {/* LOGO */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-xl bg-blue-700 flex items-center justify-center text-white font-bold shadow-sm">
-              BN
-            </div>
+            <img
+              src="/logo.png"
+              alt="Botica NovaSalud"
+              className="w-9 h-9 object-contain"
+            />
             <div className="leading-tight">
               <p className="font-semibold text-slate-900">Botica NovaSalud</p>
               <p className="text-xs text-slate-500">Cuidamos tu bienestar</p>

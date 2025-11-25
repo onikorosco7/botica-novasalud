@@ -15,6 +15,7 @@ export default function CrearProducto() {
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [imagen, setImagen] = useState(null);
 
   // VALIDACIONES
   const validar = () => {
@@ -59,10 +60,21 @@ export default function CrearProducto() {
   const guardar = async () => {
     if (!validar()) return;
 
+    const formData = new FormData();
+    formData.append("nombre", form.nombre);
+    formData.append("laboratorio", form.laboratorio);
+    formData.append("precio", form.precio);
+    formData.append("stock", form.stock);
+    formData.append("stock_minimo", form.stock_minimo);
+
+    if (imagen) {
+      formData.append("imagen", imagen);
+    }
+
     setLoading(true);
 
     try {
-      await crearProducto(form);
+      await crearProducto(formData);
       toast.success("Producto creado exitosamente.");
 
       setTimeout(() => {
@@ -137,6 +149,18 @@ export default function CrearProducto() {
           />
           {errors.stock && (
             <p className="text-red-600 text-sm mb-2">{errors.stock}</p>
+          )}
+
+          {/* CAMPO IMAGEN */}
+          <label className="font-semibold">Imagen:</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImagen(e.target.files[0])}
+            className="w-full mb-4"
+          />
+          {errors.imagen && (
+            <p className="text-red-600 text-sm mb-2">{errors.imagen}</p>
           )}
 
           {/* CAMPO STOCK MINIMO */}

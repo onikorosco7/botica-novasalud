@@ -3,6 +3,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import LoaderOverlay from "../../components/ui/LoaderOverlay";
 import { motion } from "framer-motion";
+// Importamos íconos para mejorar la usabilidad del formulario
+import { Mail, Lock, LogIn, Hospital, RotateCw } from "lucide-react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -11,7 +13,8 @@ export default function LoginPage() {
 
   const login = async () => {
     if (!email || !password) {
-      toast.warning("Completa todos los campos");
+      // Usar toast.error o info para mensajes importantes
+      toast.error("Por favor, ingresa tu correo y contraseña.");
       return;
     }
 
@@ -27,64 +30,119 @@ export default function LoginPage() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      toast.success("¡Bienvenido!");
+      toast.success("¡Bienvenido al sistema!");
 
       setTimeout(() => {
         window.location.href = "/dashboard";
       }, 500);
     } catch (error) {
-      toast.error("Credenciales incorrectas");
+      toast.error("Credenciales incorrectas o usuario no encontrado.");
     } finally {
       setLoading(false);
     }
   };
 
+  // Manejo de la pulsación de la tecla Enter
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && email && password && !loading) {
+      login();
+    }
+  };
+
   return (
     <>
+      {/* Loader Overlay (Se mantiene para una buena UX) */}
       {loading && <LoaderOverlay text="Validando credenciales..." />}
 
-      {/* Fondo premium */}
-      <div className="h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-800 p-6">
-        {/* Card animado */}
+      {/* Fondo premium y centrado */}
+      <div className="h-screen flex items-center justify-center bg-gradient-to-br from-blue-700 to-indigo-900 p-6">
+        {/* Card de Login animado y mejorado */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="bg-white/90 backdrop-blur-lg shadow-2xl p-8 rounded-2xl w-full max-w-md border border-gray-200"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="bg-white/95 backdrop-blur-md shadow-3xl p-10 rounded-3xl w-full max-w-sm border border-gray-100 transform hover:shadow-2xl transition-shadow duration-300"
+          onKeyDown={handleKeyPress} // Manejar Enter en todo el formulario
         >
-          <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
-            Botica <span className="text-blue-600">NovaSalud</span>
-          </h2>
+          {/* Encabezado con Ícono */}
+          <div className="text-center mb-8">
+            <Hospital className="w-10 h-10 mx-auto text-blue-600 mb-2" />
+            <h2 className="text-3xl font-extrabold text-gray-800 tracking-tight">
+              Acceso Administrativo
+            </h2>
+            <p className="text-sm text-gray-500 mt-1">
+              Botica{" "}
+              <span className="font-semibold text-blue-700">NovaSalud</span>
+            </p>
+          </div>
 
           {/* CAMPO EMAIL */}
-          <label className="text-gray-700 font-medium">Correo</label>
-          <input
-            type="email"
-            placeholder="ejemplo@correo.com"
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-3 mt-1 mb-4 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500"
-          />
+          <div className="mb-4">
+            <label
+              htmlFor="email"
+              className="text-gray-700 font-semibold mb-1 block text-sm"
+            >
+              <Mail className="w-4 h-4 inline mr-1" /> Correo Electrónico
+            </label>
+            <div className="relative">
+              <input
+                id="email"
+                type="email"
+                placeholder="ejemplo@correo.com"
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition pl-4"
+                disabled={loading}
+              />
+            </div>
+          </div>
 
           {/* CAMPO PASSWORD */}
-          <label className="text-gray-700 font-medium">Contraseña</label>
-          <input
-            type="password"
-            placeholder="********"
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-3 mt-1 mb-6 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500"
-          />
+          <div className="mb-6">
+            <label
+              htmlFor="password"
+              className="text-gray-700 font-semibold mb-1 block text-sm"
+            >
+              <Lock className="w-4 h-4 inline mr-1" /> Contraseña
+            </label>
+            <div className="relative">
+              <input
+                id="password"
+                type="password"
+                placeholder="Ingresa tu clave"
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition pl-4"
+                disabled={loading}
+              />
+            </div>
+          </div>
 
-          {/* BOTÓN LOGIN */}
+          {/* BOTÓN LOGIN - Mejorado con estado de carga y accesibilidad */}
           <button
             onClick={login}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition shadow-md"
+            disabled={loading}
+            className={`w-full py-3 rounded-xl text-lg font-bold transition duration-300 shadow-lg flex items-center justify-center ${
+              loading
+                ? "bg-blue-400 cursor-wait"
+                : "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800"
+            }`}
           >
-            Iniciar Sesión
+            {loading ? (
+              <>
+                <RotateCw className="w-5 h-5 mr-3 animate-spin" />
+                Validando...
+              </>
+            ) : (
+              <>
+                <LogIn className="w-5 h-5 mr-3" />
+                Iniciar Sesión
+              </>
+            )}
           </button>
 
           {/* Pie */}
-          <p className="text-center text-gray-500 text-sm mt-4">
-            Sistema Administrativo – Botica NovaSalud
+          <p className="text-center text-gray-400 text-xs mt-6">
+            © {new Date().getFullYear()} Sistema NovaSalud. Todos los derechos
+            reservados.
           </p>
         </motion.div>
       </div>
